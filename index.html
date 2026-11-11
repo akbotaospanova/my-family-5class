@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Family Galaxy — Grade 5 · Lesson 25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071447; --deep:#0b2378; --blue:#1546c9; --sky:#3d8bff; --ice:#cfe3ff;
+  --sun:#ffd23f; --coral:#ff6b6b; --mint:#3ddc97; --violet:#9b8cff;
+  --card:rgba(255,255,255,.08); --line:rgba(255,255,255,.16); --text:#eef4ff; --muted:#a9c2ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',system-ui,sans-serif;color:var(--text);min-height:100vh;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, #2f6bff55, transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, #7b5cff33, transparent 60%),
+    linear-gradient(180deg,var(--navy) 0%, var(--deep) 45%, #0d2f9e 100%);
+  background-attachment:fixed;overflow-x:hidden;
+}
+.stars,.stars2{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+   radial-gradient(1.5px 1.5px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 70%,#fff,transparent),
+   radial-gradient(2px 2px at 50% 30%,#cfe3ff,transparent),radial-gradient(1px 1px at 70% 85%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 85% 40%,#fff,transparent),radial-gradient(1px 1px at 92% 12%,#fff,transparent),
+   radial-gradient(1px 1px at 18% 88%,#fff,transparent),radial-gradient(2px 2px at 62% 58%,#ffe9a8,transparent);
+  animation:tw 5s ease-in-out infinite alternate}
+.stars2{transform:translate(7%,11%);animation-delay:2.5s;opacity:.7}
+@keyframes tw{from{opacity:.35}to{opacity:1}}
+main,header,nav,footer{position:relative;z-index:1}
+h1,h2,h3{font-family:'Fredoka',sans-serif;letter-spacing:.2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:20;background:rgba(7,20,71,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:10px;padding-top:10px;padding-bottom:10px}
+.logo{font-family:'Fredoka';font-weight:700;white-space:nowrap;font-size:18px}
+.logo span{color:var(--sun)}
+.links{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1}
+.links::-webkit-scrollbar{display:none}
+.links a{color:var(--ice);text-decoration:none;font-weight:800;font-size:13px;padding:7px 12px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.links a:hover,.links a.on{background:rgba(255,255,255,.1);border-color:var(--line)}
+.score{background:var(--sun);color:#3a2a00;font-family:'Fredoka';font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 0 0 4px #ffd23f33}
+.score.pop{animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.25)}}
+
+/* HERO */
+.hero{padding:46px 0 30px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.tag{display:inline-flex;gap:8px;flex-wrap:wrap}
+.tag b{font-size:12px;background:rgba(255,255,255,.1);border:1px solid var(--line);padding:5px 10px;border-radius:999px;color:var(--ice)}
+.hero h1{font-size:clamp(36px,6vw,62px);line-height:1.02;margin:14px 0}
+.hero h1 em{font-style:normal;color:var(--sun);display:inline-block;transform:rotate(-2deg)}
+.hero p.lead{color:var(--muted);font-size:17px;max-width:520px}
+.values{margin-top:18px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#ffd23f22,#ff6b6b18);border:1px solid #ffd23f55}
+.values h3{font-size:16px;color:var(--sun)}
+.values p{font-size:14px;color:#ffeec0;margin-top:4px}
+.crit{margin-top:14px;display:grid;gap:8px}
+.crit div{display:flex;gap:10px;align-items:center;font-size:14px;background:var(--card);border:1px solid var(--line);padding:9px 12px;border-radius:14px}
+.crit i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--mint);color:#06341f;font-weight:800;flex:none}
+
+/* ORBIT */
+.orbit{position:relative;aspect-ratio:1;max-width:400px;margin:auto;width:100%}
+.ring{position:absolute;inset:0;border:2px dashed #ffffff30;border-radius:50%;animation:spin 60s linear infinite}
+.ring.r2{inset:16%;animation-duration:40s;animation-direction:reverse;border-color:#ffd23f40}
+.sun{position:absolute;inset:36%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff7c8,#ffd23f 45%,#ff9f1c);box-shadow:0 0 60px #ffd23f99;display:grid;place-items:center;text-align:center;font-family:'Fredoka';color:#4a2c00;font-weight:700;font-size:clamp(13px,2.4vw,18px);line-height:1.1}
+.planet{position:absolute;width:20%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:clamp(22px,4vw,34px);background:radial-gradient(circle at 30% 30%,#ffffff40,#ffffff10);border:1px solid #ffffff40;backdrop-filter:blur(4px);cursor:pointer;transition:transform .2s}
+.planet:hover{transform:scale(1.12)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SECTIONS */
+section{padding:34px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.sec-head h2{font-size:clamp(26px,4vw,36px)}
+.sec-head .kz{color:var(--muted);font-size:14px;font-weight:700}
+.badge{font-family:'Fredoka';font-size:13px;padding:6px 12px;border-radius:999px;font-weight:700}
+.bA{background:var(--mint);color:#063a22}.bB{background:var(--sky);color:#fff}.bC{background:var(--coral);color:#fff}.bV{background:var(--sun);color:#3a2a00}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 10px 40px #0004}
+.vlink{margin-top:14px;font-size:14px;color:#ffeec0;background:#ffd23f14;border-left:4px solid var(--sun);padding:10px 14px;border-radius:10px}
+.vlink b{color:var(--sun)}
+
+/* WORD CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.flip{perspective:800px;height:170px;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;text-align:center;border:1px solid var(--line)}
+.front{background:linear-gradient(160deg,#2a63ff,#1335a3)}
+.front .em{font-size:48px}
+.front .w{font-family:'Fredoka';font-size:20px;font-weight:600}
+.back{background:linear-gradient(160deg,#fff,#dbe8ff);color:#0b2378;transform:rotateY(180deg)}
+.back .w{font-family:'Fredoka';font-size:18px;font-weight:700}
+.back small{font-size:13px;font-weight:700}
+.back .kk{color:#c2410c;font-weight:800;font-size:14px}
+.say{border:none;background:var(--sun);color:#3a2a00;border-radius:999px;padding:4px 10px;font-weight:800;font-size:12px;cursor:pointer}
+
+/* GRAMMAR */
+.gram{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gcard{border-radius:20px;padding:18px;background:#ffffff10;border:1px solid var(--line)}
+.gcard h3{font-size:19px;margin-bottom:8px}
+.formula{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-family:'Fredoka';font-weight:600;margin:8px 0}
+.formula span{padding:6px 10px;border-radius:10px}
+.f1{background:var(--sky)}.f2{background:var(--sun);color:#3a2a00}.f3{background:var(--mint);color:#063a22}
+.gcard p{font-size:14px;color:var(--ice);margin-top:6px}
+.gcard code{font-family:inherit;background:#ffffff18;padding:1px 6px;border-radius:6px;color:#fff}
+
+/* TREE */
+.treebox{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;align-items:stretch}
+svg.tree{width:100%;height:auto;display:block}
+.node{cursor:pointer}
+.node circle{transition:all .2s}
+.node:hover circle{stroke:var(--sun);stroke-width:4}
+.node.me circle{stroke:var(--sun);stroke-width:4}
+.caption{display:flex;flex-direction:column;justify-content:center;gap:10px;background:#ffffff0f;border:1px dashed #ffffff40;border-radius:20px;padding:18px;text-align:center}
+.caption .big{font-family:'Fredoka';font-size:22px;color:var(--sun)}
+
+/* TASKS */
+.pairs{display:grid;grid-template-columns:1fr 1.6fr;gap:12px}
+.col{display:flex;flex-direction:column;gap:8px}
+.chip{background:#ffffff14;border:2px solid var(--line);color:var(--text);border-radius:14px;padding:10px 12px;font:700 15px 'Nunito';cursor:pointer;text-align:left;transition:all .15s}
+.chip:hover{border-color:var(--sky)}
+.chip.sel{border-color:var(--sun);background:#ffd23f22}
+.chip.ok{border-color:var(--mint);background:#3ddc9730;cursor:default}
+.chip.bad{animation:shake .35s;border-color:var(--coral)}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:#ffffff0d;border:1px solid var(--line);margin-bottom:8px;font-size:16px}
+.q .n{font-family:'Fredoka';color:var(--sun);width:22px}
+select,input[type=text],textarea{font:700 15px 'Nunito';border-radius:10px;border:2px solid #ffffff40;background:#0b2378;color:#fff;padding:7px 10px}
+textarea{width:100%;min-height:70px;resize:vertical}
+.q.ok{border-color:var(--mint);background:#3ddc9722}.q.no{border-color:var(--coral);background:#ff6b6b1f}
+.btn{font:700 15px 'Fredoka';border:none;border-radius:999px;padding:11px 20px;cursor:pointer;background:var(--sun);color:#3a2a00;box-shadow:0 5px 0 #c99a00;transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #c99a00}
+.btn.alt{background:var(--sky);color:#fff;box-shadow:0 5px 0 #1d4fb8}
+.btn.ghost{background:#ffffff1a;color:#fff;box-shadow:none;border:1px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.result{font-family:'Fredoka';font-size:18px}
+.dlg{padding:14px;border-radius:16px;background:#ffffff0d;border:1px solid var(--line);margin-bottom:10px}
+.dlg .a{margin-bottom:8px;font-size:16px}
+.dlg .a b{color:var(--sun)}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.talk{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.bubble{border-radius:20px;padding:18px;font-family:'Fredoka';font-size:22px;min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center}
+.bq{background:var(--sky);border-bottom-left-radius:4px}
+.ba{background:#fff;color:#0b2378;border-bottom-right-radius:4px}
+.ba.hide{color:transparent;background:repeating-linear-gradient(45deg,#ffffff22 0 10px,#ffffff11 10px 20px)}
+
+/* GAMES */
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.game{padding:18px;border-radius:22px;background:linear-gradient(170deg,#ffffff14,#ffffff06);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.game h3{font-size:20px}
+.game .hint{font-size:13px;color:var(--muted)}
+.miss{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.miss div{aspect-ratio:1;border-radius:14px;background:#2a63ff;display:grid;place-items:center;font-size:30px;transition:all .3s}
+.miss div.cover{background:#0b2378;font-size:0}
+.miss div.gone{opacity:.15}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mem button{aspect-ratio:3/4;border:none;border-radius:10px;background:linear-gradient(160deg,#9b8cff,#5b46e0);color:transparent;font:700 11px 'Nunito';cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px}
+.mem button .e{font-size:22px}
+.mem button.open,.mem button.done{background:#fff;color:#0b2378}
+.mem button.done{background:#d6ffe9;opacity:.85}
+.timer{height:8px;border-radius:9px;background:#ffffff22;overflow:hidden}
+.timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--mint),var(--sun),var(--coral));transition:width 1s linear}
+.sq{font-family:'Fredoka';font-size:17px;min-height:48px}
+
+/* BRAIN */
+.brain{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rid{border-radius:20px;padding:16px;background:linear-gradient(160deg,#1e57ff,#0f2a8a);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.rid::after{content:'?';position:absolute;right:-8px;bottom:-30px;font:700 120px 'Fredoka';color:#ffffff0d}
+.rid .lvl{font-size:12px;font-weight:800;color:var(--sun)}
+.rid p{font-weight:700;font-size:15px;flex:1}
+.rid .row{margin-top:0}
+.rid input{width:100%}
+.rid.ok{background:linear-gradient(160deg,#16a36a,#0b6b45)}
+
+/* VIDEOS */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.vid{text-decoration:none;color:var(--text);border-radius:20px;overflow:hidden;background:#ffffff10;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .2s}
+.vid:hover{transform:translateY(-4px)}
+.thumb{height:110px;display:grid;place-items:center;font-size:44px;position:relative}
+.thumb::after{content:'▶';position:absolute;right:12px;bottom:10px;width:34px;height:34px;border-radius:50%;background:#fff;color:#e11d48;display:grid;place-items:center;font-size:14px}
+.vid .t{padding:12px 14px}
+.vid .t b{font-family:'Fredoka';font-size:16px;display:block}
+.vid .t span{font-size:13px;color:var(--muted)}
+
+/* REFLECTION */
+.refl{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.leaves{display:flex;gap:8px;flex-wrap:wrap}
+.leaf{border:none;border-radius:16px;padding:10px 12px;font:700 14px 'Nunito';cursor:pointer;color:#06200f;text-align:left;flex:1;min-width:150px}
+.lg{background:#3ddc97}.ly{background:#ffd23f;color:#3a2a00}.lr{background:#ff8b8b;color:#3b0000}
+.treeS{height:190px;position:relative;margin-top:12px}
+.trunk{position:absolute;left:50%;bottom:0;width:26px;height:80px;background:#8b5a2b;transform:translateX(-50%);border-radius:6px}
+.crown{position:absolute;left:50%;bottom:60px;width:220px;height:130px;transform:translateX(-50%);border-radius:50%;background:#ffffff12;border:2px dashed #ffffff40}
+.dot{position:absolute;font-size:22px;animation:drop .5s}
+@keyframes drop{from{transform:translateY(-30px);opacity:0}}
+.scale{display:flex;gap:4px;flex-wrap:wrap}
+.scale button{width:36px;height:36px;border-radius:10px;border:2px solid var(--line);background:#ffffff10;color:#fff;font:700 15px 'Fredoka';cursor:pointer}
+.scale button.on{background:var(--sun);color:#3a2a00;border-color:var(--sun)}
+.lab{font-size:13px;color:var(--muted);font-weight:800;margin:12px 0 6px;display:block}
+
+/* HOMEWORK */
+.hw{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hcard{border-radius:22px;padding:18px;background:#fff;color:#0b2378;display:flex;flex-direction:column;gap:8px;position:relative}
+.hcard h3{font-size:20px}
+.hcard .lv{position:absolute;top:-12px;left:16px}
+.hcard ul{padding-left:18px;font-size:14px}
+.hcard .ex{font-size:13px;background:#eef4ff;border-radius:12px;padding:10px;font-style:italic}
+.hcard .cr{font-size:13px;font-weight:800;color:#1546c9}
+.ata{margin-top:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.ata .steps{display:flex;gap:6px;flex-wrap:wrap}
+.ata .steps span{background:#ffd23f;color:#3a2a00;border-radius:999px;padding:5px 10px;font-weight:800;font-size:13px}
+
+footer{padding:30px 0 50px;text-align:center;color:var(--muted);font-size:13px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(120px);background:#fff;color:#0b2378;font:700 16px 'Fredoka';padding:12px 20px;border-radius:999px;box-shadow:0 10px 30px #0006;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:860px){
+  .hero,.treebox,.refl{grid-template-columns:1fr}
+  .gram,.games,.hw{grid-template-columns:1fr}
+  .brain{grid-template-columns:1fr 1fr}
+  .pairs{grid-template-columns:1fr 1fr}
+  .orbit{max-width:300px}
+}
+@media (max-width:520px){
+  .brain{grid-template-columns:1fr}
+  .talk{grid-template-columns:1fr}
+  .chip{font-size:14px;padding:9px}
+  .logo{display:none}
+}
+</style>
+</head>
+<body>
+<div class="stars"></div><div class="stars2"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">My Family <span>Galaxy</span></div>
+    <div class="links" id="links">
+      <a href="#start">Start</a><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#tree">Tree</a>
+      <a href="#task1">Task 1</a><a href="#task2">Task 2</a><a href="#task3">Task 3</a><a href="#games">Games</a>
+      <a href="#brain">Brain zone</a><a href="#videos">Videos</a><a href="#reflection">Reflection</a><a href="#homework">Homework</a>
+    </div>
+    <div class="score" id="score">⭐ 0</div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- HERO -->
+<header class="hero" id="start">
+  <div>
+    <div class="tag"><b>Grade 5</b><b>Unit 3 · Values</b><b>Lesson 25</b></div>
+    <h1>The <em>Family</em><br>Galaxy</h1>
+    <p class="lead">Every family is a small galaxy: everyone shines in their own place. Today we learn family words, the magic <b>'s</b>, and how to ask <b>Who's…?</b> and <b>Whose…?</b></p>
+    <div class="values">
+      <h3>💛 Value of the month: Adal Azamat</h3>
+      <p>November — Month of Justice and Responsibility. “Fairness and responsibility are the key qualities of a true citizen.” Today: be honest, responsible, and respectful to your family and your partner.</p>
+    </div>
+    <div class="crit">
+      <div><i>1</i>I can name at least 8 family members in English.</div>
+      <div><i>2</i>I can use <b>'s</b> to talk about a family tree.</div>
+      <div><i>3</i>I can ask and answer <b>Who's…? / Whose…?</b> with a partner.</div>
+    </div>
+  </div>
+  <div class="orbit" id="orbit">
+    <div class="ring"></div><div class="ring r2"></div>
+    <div class="sun">ME<br>& my<br>family</div>
+  </div>
+</header>
+
+<!-- WORDS -->
+<section id="words">
+  <div class="sec-head">
+    <div><h2>🌟 Word Stars</h2><div class="kz">Карточканы бас — аудармасын көр, 🔊 тыңда</div></div>
+    <span class="badge bV">Ex. 1 · p. 33</span>
+  </div>
+  <div class="cards" id="cards"></div>
+  <div class="vlink"><b>Values Link — Adal Azamat:</b> be responsible and focused when you learn. If you don't know a word, say it honestly: “I don't know yet.”</div>
+</section>
+
+<!-- GRAMMAR -->
+<section id="grammar">
+  <div class="sec-head">
+    <div><h2>🪐 Grammar Box</h2><div class="kz">Тәуелдік 's, Whose және Who's</div></div>
+    <span class="badge bV">Ex. 2 · p. 33</span>
+  </div>
+  <div class="gram">
+    <div class="gcard">
+      <h3>Possessive 's</h3>
+      <div class="formula"><span class="f1">Owner</span>+<span class="f2">'s</span>+<span class="f3">noun</span></div>
+      <p><code>Sam's</code> daughter = the daughter of Sam</p>
+      <p><code>Kate and Claire's</code> dad = one dad for two girls</p>
+      <p>Kazakh: Самның қызы · Russian: дочь Сэма</p>
+    </div>
+    <div class="gcard">
+      <h3>Whose…? 🔑</h3>
+      <div class="formula"><span class="f2">Whose</span>= <span class="f3">чей? кімнің?</span></div>
+      <p><code>Whose book is this?</code> — It's Paula's.</p>
+      <p><code>Whose dad is Sam?</code> — He's Kate's dad.</p>
+    </div>
+    <div class="gcard">
+      <h3>Who's…? 🙋</h3>
+      <div class="formula"><span class="f1">Who's</span>= <span class="f3">Who is</span></div>
+      <p><code>Who's John?</code> — He's Sue's brother.</p>
+      <p>⚠️ <b>who's</b> sounds like <b>whose</b>, but means “who is”.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TREE -->
+<section id="tree">
+  <div class="sec-head">
+    <div><h2>🌳 Dana's Family Tree</h2><div class="kz">Адамды бас — сөйлемді тыңда</div></div>
+  </div>
+  <div class="panel treebox">
+    <svg class="tree" viewBox="0 0 410 300" id="treeSvg" aria-label="Dana's family tree"></svg>
+    <div class="caption" id="caption">
+      <div style="font-size:42px">👆</div>
+      <div class="big">Tap a person</div>
+      <div>Dana is the girl with the yellow ring. Who are the others?</div>
+    </div>
+  </div>
+</section>
+
+<!-- TASK 1 -->
+<section id="task1">
+  <div class="sec-head">
+    <div><h2>Task 1 · Word Match</h2><div class="kz">Сөзді таңда, содан кейін оның мағынасын таңда</div></div>
+    <span class="badge bA">Level A · Know</span>
+  </div>
+  <div class="panel">
+    <div class="pairs">
+      <div class="col" id="t1w"></div>
+      <div class="col" id="t1d"></div>
+    </div>
+    <div class="row"><span class="result" id="t1r">0 / 8</span><button class="btn ghost" onclick="initT1()">↺ Again</button></div>
+    <div class="vlink"><b>Descriptor (3 points):</b> listens attentively · pronounces new words correctly · matches 8 words with their meanings.</div>
+  </div>
+</section>
+
+<!-- TASK 2 -->
+<section id="task2">
+  <div class="sec-head">
+    <div><h2>Task 2 · Who is who?</h2><div class="kz">Dana's family tree-ге қарап, дұрыс сөзді таңда</div></div>
+    <span class="badge bB">Level B · Use</span>
+  </div>
+  <div class="panel">
+    <div id="t2"></div>
+    <div class="row"><button class="btn" onclick="checkT2()">✔ Check</button><button class="btn ghost" onclick="buildT2()">↺ Reset</button><span class="result" id="t2r"></span></div>
+    <div class="vlink"><b>Values Link — Adal Azamat:</b> accuracy and responsibility — check your own answers before you press “Check”.</div>
+  </div>
+</section>
+
+<!-- TASK 3 -->
+<section id="task3">
+  <div class="sec-head">
+    <div><h2>Task 3 · Who's or Whose?</h2><div class="kz">Диалогты толықтыр, сосын жұппен сөйлес</div></div>
+    <span class="badge bC">Level C · Speak</span>
+  </div>
+  <div class="panel">
+    <div id="t3"></div>
+    <div class="row"><span class="result" id="t3r"></span></div>
+    <h3 style="margin-top:20px">🎤 Pair talk</h3>
+    <p style="color:var(--muted);font-size:14px">Student A reads the question. Student B answers using the tree. Then tap “Show answer” and swap roles.</p>
+    <div class="talk">
+      <div class="bubble bq" id="pq">Who's Erlan?</div>
+      <div class="bubble ba hide" id="pa">He's Dana's uncle.</div>
+    </div>
+    <div class="row"><button class="btn alt" onclick="newPair()">🎲 New question</button><button class="btn ghost" onclick="showPair()">👀 Show answer</button><button class="btn ghost" onclick="speak(pq.textContent+' '+pa.textContent)">🔊 Listen</button></div>
+    <div class="vlink"><b>Values Link — Adal Azamat:</b> work cooperatively and respectfully — take turns, listen to your partner, give “two stars and a wish”.</div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="sec-head">
+    <div><h2>🎮 Game Station</h2><div class="kz">Командамен ойна — әділ ойын ережесін сақта!</div></div>
+  </div>
+  <div class="games">
+    <div class="game">
+      <h3>What's missing?</h3>
+      <div class="hint">Look at the cards. Press the button, one card disappears. Which one?</div>
+      <div class="miss" id="miss"></div>
+      <button class="btn alt" onclick="startMiss()">🙈 Close your eyes!</button>
+      <div class="opts" id="missOpts"></div>
+    </div>
+    <div class="game">
+      <h3>Memory Match</h3>
+      <div class="hint">Find the pairs: father ↔ mother, uncle ↔ aunt…</div>
+      <div class="mem" id="mem"></div>
+      <div class="row" style="margin-top:0"><span id="memR" class="result">0 / 6</span><button class="btn ghost" onclick="initMem()">↺</button></div>
+    </div>
+    <div class="game">
+      <h3>Speed Quiz · 60 s</h3>
+      <div class="hint">Answer as many as you can!</div>
+      <div class="timer"><i id="bar"></i></div>
+      <div class="sq" id="sqQ">Press start ⏱</div>
+      <div class="opts" id="sqO"></div>
+      <div class="row" style="margin-top:0"><button class="btn" onclick="startSQ()">▶ Start</button><span class="result" id="sqR"></span></div>
+    </div>
+  </div>
+  <div class="vlink"><b>Values Link — Adal Azamat:</b> fair play — follow the rules honestly and congratulate the winners.</div>
+</section>
+
+<!-- BRAIN -->
+<section id="brain">
+  <div class="sec-head">
+    <div><h2>🧠 Intellectual Zone</h2><div class="kz">Зияткерлік алаң: туыстық жұмбақтар</div></div>
+    <span class="badge bC">Think!</span>
+  </div>
+  <div class="brain" id="riddles"></div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="sec-head">
+    <div><h2>🎬 Videos for the lesson</h2><div class="kz">Сабаққа қажетті бейнелер</div></div>
+  </div>
+  <div class="vids">
+    <a class="vid" href="https://www.youtube.com/watch?v=yDua9ms9_eg" target="_blank" rel="noopener"><div class="thumb" style="background:linear-gradient(135deg,#ff9f1c,#ff6b6b)">👨‍👩‍👧‍👦</div><div class="t"><b>The People in My Family</b><span>Super Simple Songs · warm-up</span></div></a>
+    <a class="vid" href="https://learnenglishkids.britishcouncil.org/listen-watch/songs/what-family" target="_blank" rel="noopener"><div class="thumb" style="background:linear-gradient(135deg,#3ddc97,#1a8f6b)">🏡</div><div class="t"><b>What is a family?</b><span>British Council · song + values talk</span></div></a>
+    <a class="vid" href="https://www.youtube.com/watch?v=50sChAnR0uU" target="_blank" rel="noopener"><div class="thumb" style="background:linear-gradient(135deg,#9b8cff,#5b46e0)">✍️</div><div class="t"><b>Possessive nouns ('s)</b><span>Kids Academy · Task 2</span></div></a>
+    <a class="vid" href="https://ar.englishcentral.com/video/31300/possessives-and-whose" target="_blank" rel="noopener"><div class="thumb" style="background:linear-gradient(135deg,#3d8bff,#1546c9)">🔑</div><div class="t"><b>Possessives and Whose</b><span>EnglishCentral · Task 3</span></div></a>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection">
+  <div class="sec-head">
+    <div><h2>🍃 Reflection · Tree of Success</h2><div class="kz">Өзіңе сәйкес жапырақты таңда</div></div>
+  </div>
+  <div class="refl">
+    <div class="panel">
+      <div class="leaves">
+        <button class="leaf lg" onclick="addLeaf('🍀')">🍀 I can name 8+ words and use 's</button>
+        <button class="leaf ly" onclick="addLeaf('🍂')">🍂 I need a little help</button>
+        <button class="leaf lr" onclick="addLeaf('🍁')">🍁 I need more practice</button>
+      </div>
+      <div class="treeS" id="treeS"><div class="crown"></div><div class="trunk"></div></div>
+      <span class="lab">My score today (10-point scale)</span>
+      <div class="scale" id="scale"></div>
+      <div id="scaleT" style="margin-top:8px;font-weight:800"></div>
+    </div>
+    <div class="panel">
+      <span class="lab" style="margin-top:0">3 — new words I learned</span>
+      <input type="text" style="width:100%" placeholder="uncle, cousin, niece…">
+      <span class="lab">2 — sentences with 's</span>
+      <textarea placeholder="Erlan is Dana's uncle. Aru is Alikhan's sister."></textarea>
+      <span class="lab">1 — question I still have</span>
+      <input type="text" style="width:100%" placeholder="?">
+      <span class="lab">💛 What can you do today to show love and respect for your family?</span>
+      <textarea placeholder="I can help my grandma… I can call my uncle…"></textarea>
+      <div class="row"><button class="btn" onclick="toast('Thank you! Great reflection 💛');addStar(1)">Send ✨</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOMEWORK -->
+<section id="homework">
+  <div class="sec-head">
+    <div><h2>🏠 Homework</h2><div class="kz">Деңгейіңді таңда (A, B немесе C)</div></div>
+  </div>
+  <div class="hw">
+    <div class="hcard"><span class="badge bA lv">Level A</span>
+      <h3>My Family Tree</h3>
+      <ul><li>Draw your family tree (or use a photo).</li><li>Label at least <b>8</b> family members in English.</li><li>Write the names under the pictures.</li></ul>
+      <div class="ex">Example: Nurlan — grandfather, Saule — grandmother…</div>
+      <div class="cr">✔ 8 words · correct spelling · neat work</div>
+    </div>
+    <div class="hcard"><span class="badge bB lv">Level B</span>
+      <h3>About My Family</h3>
+      <ul><li>Write <b>5–6 sentences</b> about your family.</li><li>Use <b>'s</b> in every sentence.</li><li>Use target words: uncle, aunt, cousin, niece, nephew…</li></ul>
+      <div class="ex">Example: Erlan is my dad's brother. He's my uncle. Aru is my uncle's daughter. She's my cousin.</div>
+      <div class="cr">✔ 5–6 sentences · 's used correctly · 6+ family words</div>
+    </div>
+    <div class="hcard"><span class="badge bC lv">Level C</span>
+      <h3>Meet My Family</h3>
+      <ul><li>Write a dialogue with <b>4 questions</b>: Who's…? / Whose…?</li><li><b>or</b> record a 1-minute audio “Meet my family”.</li><li>Be ready to present it next lesson.</li></ul>
+      <div class="ex">A: Who's Gulnar? B: She's my aunt. A: Whose wife is she? B: She's my uncle Erlan's wife.</div>
+      <div class="cr">✔ 4 correct questions · clear pronunciation · good answers</div>
+    </div>
+  </div>
+  <div class="panel ata">
+    <div style="font-size:40px">📜</div>
+    <div style="flex:1;min-width:220px">
+      <h3>Values task · Жеті ата (Seven ancestors)</h3>
+      <p style="font-size:14px;color:var(--ice)">Ask your grandparents about your seven ancestors. Write their names in English letters: “My father's father is…”. Knowing your roots is part of being an <b>Adal Azamat</b>.</p>
+      <div class="steps"><span>1 Me</span><span>2 Father</span><span>3 Grandfather</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>Grade 5 · Unit 3 Values · Lesson 25 “Vocabulary: The family” · Excel 5 · Interactive lesson site</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---------- data ----------
+const W=[
+ {w:'grandfather',e:'👴',kz:'ата',ru:'дедушка',d:"your mum's or dad's father"},
+ {w:'grandmother',e:'👵',kz:'әже',ru:'бабушка',d:"your mum's or dad's mother"},
+ {w:'father',e:'👨',kz:'әке',ru:'отец'},
+ {w:'mother',e:'👩',kz:'ана',ru:'мать'},
+ {w:'uncle',e:'🧔',kz:'көке, нағашы аға',ru:'дядя',d:"your mum's or dad's brother"},
+ {w:'aunt',e:'👩‍🦰',kz:'апа, тәте',ru:'тётя',d:"your mum's or dad's sister"},
+ {w:'cousin',e:'🧒',kz:'немере / бөле туыс',ru:'двоюродный брат / сестра',d:"your uncle's or aunt's child"},
+ {w:'son',e:'👦',kz:'ұл',ru:'сын'},
+ {w:'daughter',e:'👧',kz:'қыз',ru:'дочь'},
+ {w:'nephew',e:'🧑',kz:'жиен (ұл)',ru:'племянник',d:"your brother's or sister's son"},
+ {w:'niece',e:'👱‍♀️',kz:'жиен (қыз)',ru:'племянница',d:"your brother's or sister's daughter"},
+ {w:'husband',e:'🤵',kz:'күйеу',ru:'муж',d:"a married man: Mark is Mary's …"},
+ {w:'wife',e:'👰',kz:'әйел, жұбай',ru:'жена'},
+ {w:'father-in-law',e:'🧓',kz:'қайын ата',ru:'свёкор / тесть'}
+];
+const P={ // family
+ Nurlan:{e:'👴',x:165,y:42,rel:'grandfather'}, Saule:{e:'👵',x:245,y:42,rel:'grandmother'},
+ Arman:{e:'👨',x:70,y:145,rel:'father'}, Aigerim:{e:'👩',x:145,y:145,rel:'mother'},
+ Erlan:{e:'🧔',x:265,y:145,rel:'uncle'}, Gulnar:{e:'👩‍🦰',x:340,y:145,rel:'aunt'},
+ Dana:{e:'👧',x:70,y:250,rel:'me'}, Timur:{e:'👦',x:145,y:250,rel:'brother'},
+ Alikhan:{e:'🧒',x:265,y:250,rel:'cousin'}, Aru:{e:'👱‍♀️',x:340,y:250,rel:'cousin'}
+};
+const FACT={
+ Nurlan:["He's Dana's grandfather.","He's Saule's husband."],
+ Saule:["She's Dana's grandmother.","She's Nurlan's wife."],
+ Arman:["He's Dana's father.","He's Erlan's brother."],
+ Aigerim:["She's Dana's mother.","She's Arman's wife."],
+ Erlan:["He's Dana's uncle.","He's Arman's brother."],
+ Gulnar:["She's Dana's aunt.","She's Erlan's wife."],
+ Dana:["That's me! I'm Dana.","I'm Arman and Aigerim's daughter."],
+ Timur:["He's Dana's brother.","He's Erlan's nephew."],
+ Alikhan:["He's Dana's cousin.","He's Erlan and Gulnar's son."],
+ Aru:["She's Dana's cousin.","She's Alikhan's sister."]
+};
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+// ---------- utils ----------
+let stars=0;
+function addStar(n){stars+=n;const s=$('score');s.textContent='⭐ '+stars;s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop')}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800)}
+
+// ---------- orbit ----------
+(function(){const o=$('orbit');const list=['👴','👵','👨','👩','🧔','👩‍🦰','👦','👧'];
+ list.forEach((e,i)=>{const a=i/list.length*2*Math.PI-Math.PI/2;const r=i%2?30:43;
+  const p=document.createElement('div');p.className='planet';p.textContent=e;
+  p.style.left=(50+r*Math.cos(a)-10)+'%';p.style.top=(50+r*Math.sin(a)-10)+'%';
+  const w=W.find(x=>x.e===e);p.title=w.w;p.onclick=()=>{speak(w.w);toast(e+' '+w.w)};o.appendChild(p)})})();
+
+// ---------- cards ----------
+$('cards').innerHTML=W.map((w,i)=>`<div class="flip" data-i="${i}"><div class="in">
+ <div class="face front"><div class="em">${w.e}</div><div class="w">${w.w}</div></div>
+ <div class="face back"><div class="w">${w.w}</div><div class="kk">${w.kz}</div><small>${w.ru}</small><button class="say" data-s="${w.w}">🔊 listen</button></div>
+</div></div>`).join('');
+document.querySelectorAll('.flip').forEach(c=>c.addEventListener('click',e=>{
+ if(e.target.classList.contains('say')){e.stopPropagation();speak(e.target.dataset.s);return}
+ c.classList.toggle('on');if(c.classList.contains('on'))speak(W[c.dataset.i].w)}));
+
+// ---------- tree ----------
+(function(){const s=$('treeSvg');let h='';
+ const L=(a,b,c,d)=>h+=`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#ffffff66" stroke-width="3" stroke-linecap="round"/>`;
+ L(165,42,245,42); L(205,42,205,95); L(70,95,265,95); L(70,95,70,145); L(265,95,265,145);
+ L(70,145,145,145); L(265,145,340,145);
+ L(107,145,107,200); L(70,200,145,200); L(70,200,70,250); L(145,200,145,250);
+ L(302,145,302,200); L(265,200,340,200); L(265,200,265,250); L(340,200,340,250);
+ h+=`<text x="205" y="36" text-anchor="middle" fill="#ffd23f" font-size="14">♥</text><text x="107" y="139" text-anchor="middle" fill="#ffd23f" font-size="14">♥</text><text x="302" y="139" text-anchor="middle" fill="#ffd23f" font-size="14">♥</text>`;
+ for(const [n,p] of Object.entries(P)){
+  h+=`<g class="node ${n==='Dana'?'me':''}" data-n="${n}"><circle cx="${p.x}" cy="${p.y}" r="25" fill="${n==='Dana'?'#ffd23f33':'#1f5cff'}" stroke="#ffffff88" stroke-width="2"/>
+  <text x="${p.x}" y="${p.y+9}" text-anchor="middle" font-size="26">${p.e}</text>
+  <text x="${p.x}" y="${p.y+43}" text-anchor="middle" fill="#fff" font-family="Fredoka" font-size="13" font-weight="600">${n}</text></g>`}
+ s.innerHTML=h;
+ s.querySelectorAll('.node').forEach(g=>g.addEventListener('click',()=>{const n=g.dataset.n,f=FACT[n];
+  $('caption').innerHTML=`<div style="font-size:46px">${P[n].e}</div><div class="big">${n}</div><div style="font-size:17px;font-weight:800">${f[0]}</div><div style="color:var(--muted)">${f[1]}</div>`;
+  speak(n+'. '+f.join(' '))}));})();
+
+// ---------- task 1 ----------
+let t1sel=null,t1ok=0;
+function initT1(){t1sel=null;t1ok=0;$('t1r').textContent='0 / 8';
+ const set=W.filter(w=>w.d).slice(0,8);
+ $('t1w').innerHTML=shuffle(set).map(w=>`<button class="chip" data-w="${w.w}">${w.e} ${w.w}</button>`).join('');
+ $('t1d').innerHTML=shuffle(set).map(w=>`<button class="chip" data-d="${w.w}">${w.d}</button>`).join('');
+ $('t1w').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{if(b.classList.contains('ok'))return;$('t1w').querySelectorAll('.chip').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');t1sel=b;speak(b.dataset.w)});
+ $('t1d').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{if(!t1sel||b.classList.contains('ok'))return;
+  if(b.dataset.d===t1sel.dataset.w){b.classList.add('ok');t1sel.classList.remove('sel');t1sel.classList.add('ok');t1sel=null;t1ok++;addStar(1);$('t1r').textContent=t1ok+' / 8';if(t1ok===8)toast('🎉 Super! All 8 words!')}
+  else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad')}})}
+initT1();
+
+// ---------- task 2 ----------
+const T2=[["Arman","Dana's","father"],["Saule","Dana's","grandmother"],["Erlan","Dana's","uncle"],["Gulnar","Dana's","aunt"],["Alikhan","Dana's","cousin"],["Timur","Erlan's","nephew"],["Dana","Gulnar's","niece"],["Aigerim","Arman's","wife"],["Nurlan","Timur's","grandfather"],["Aru","Erlan's","daughter"]];
+const OPT=['father','mother','grandfather','grandmother','uncle','aunt','cousin','nephew','niece','son','daughter','husband','wife'];
+let t2done=false;
+function buildT2(){t2done=false;$('t2r').textContent='';
+ $('t2').innerHTML=T2.map((r,i)=>`<div class="q" id="q${i}"><span class="n">${i+1}</span>${P[r[0]].e} <b>${r[0]}</b> is ${r[1]} <select><option value="">— choose —</option>${OPT.map(o=>`<option>${o}</option>`).join('')}</select>.</div>`).join('')}
+function checkT2(){let c=0;T2.forEach((r,i)=>{const q=$('q'+i),v=q.querySelector('select').value;q.classList.remove('ok','no');if(!v)return;if(v===r[2]){q.classList.add('ok');c++}else q.classList.add('no')});
+ $('t2r').textContent=`${c} / 10 correct`;if(!t2done&&c){addStar(c);t2done=true}if(c===10)toast('🌟 Perfect family tree!')}
+buildT2();
+
+// ---------- task 3 ----------
+const T3=[
+ {a:"A: Who's Erlan?<br>B: <b>___</b>",o:["He's Dana's uncle.","His Dana uncle.","Whose Dana's uncle."],k:0},
+ {a:"A: <b>___</b> dad is Arman?<br>B: He's Dana and Timur's dad.",o:["Whose","Who's","Who"],k:0},
+ {a:"A: <b>___</b> Gulnar?<br>B: She's Erlan's wife.",o:["Whose","Who's","Who are"],k:1},
+ {a:"A: Whose sister is Aru?<br>B: <b>___</b>",o:["He's Alikhan's sister.","She's Alikhan sister.","She's Alikhan's sister."],k:2},
+ {a:"A: Whose grandson is Timur?<br>B: <b>___</b>",o:["He's Nurlan and Saule's grandson.","She's Nurlan and Saule's grandson.","He's Nurlan's and Saule grandson."],k:0},
+ {a:"A: <b>___</b> book is this?<br>B: It's Dana's.",o:["Who's","Whose","Who is"],k:1}
+];
+let t3ok=0;
+$('t3').innerHTML=T3.map((d,i)=>`<div class="dlg"><div class="a">${i+1}. ${d.a}</div><div class="opts">${shuffle(d.o.map((o,j)=>({o,j}))).map(x=>`<button class="chip" data-i="${i}" data-j="${x.j}">${x.o}</button>`).join('')}</div></div>`).join('');
+$('t3').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const d=T3[b.dataset.i];const box=b.parentElement;if(box.dataset.done)return;
+ if(+b.dataset.j===d.k){b.classList.add('ok');box.dataset.done=1;t3ok++;addStar(1);$('t3r').textContent=t3ok+' / 6 correct';speak(d.a.replace(/<[^>]+>/g,' ').replace('___',d.o[d.k]))}
+ else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad')}});
+const PAIRS=[];
+for(const [n,f] of Object.entries(FACT)){if(n==='Dana')continue;PAIRS.push([`Who's ${n}?`,f[0]])}
+PAIRS.push(["Whose dad is Arman?","He's Dana and Timur's dad."],["Whose wife is Gulnar?","She's Erlan's wife."],["Whose sister is Aru?","She's Alikhan's sister."],["Whose son is Alikhan?","He's Erlan and Gulnar's son."],["Whose husband is Nurlan?","He's Saule's husband."]);
+const pq=$('pq'),pa=$('pa');
+function newPair(){const p=PAIRS[Math.floor(Math.random()*PAIRS.length)];pq.textContent=p[0];pa.textContent=p[1];pa.classList.add('hide')}
+function showPair(){pa.classList.remove('hide');speak(pa.textContent)}
+
+// ---------- game: what's missing ----------
+let missAns=null,missSet=[];
+function drawMiss(cover,gone){$('miss').innerHTML=missSet.map((w,i)=>`<div class="${cover?'cover':''} ${gone===i?'gone':''}">${gone===i?'❔':w.e}</div>`).join('')}
+function initMiss(){missSet=shuffle(W.slice(0,13)).slice(0,6);drawMiss(false,-1);$('missOpts').innerHTML=''}
+function startMiss(){if(!missSet.length)initMiss();drawMiss(true,-1);missAns=Math.floor(Math.random()*6);
+ setTimeout(()=>{drawMiss(false,missAns);$('missOpts').innerHTML=shuffle(missSet).map(w=>`<button class="chip" data-w="${w.w}">${w.w}</button>`).join('');
+  $('missOpts').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{if(b.dataset.w===missSet[missAns].w){b.classList.add('ok');addStar(1);toast('✅ Yes! '+missSet[missAns].e+' '+missSet[missAns].w);speak(missSet[missAns].w);setTimeout(initMiss,1400)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad')}})},1600)}
+initMiss();
+
+// ---------- game: memory ----------
+const MP=[['father','mother'],['uncle','aunt'],['nephew','niece'],['son','daughter'],['grandfather','grandmother'],['husband','wife']];
+let memOpen=[],memDone=0,memLock=false;
+function initMem(){memOpen=[];memDone=0;$('memR').textContent='0 / 6';
+ const cards=shuffle(MP.flatMap((p,i)=>p.map(w=>({w,i,e:W.find(x=>x.w===w).e}))));
+ $('mem').innerHTML=cards.map(c=>`<button data-i="${c.i}" data-w="${c.w}"><span class="e">${c.e}</span>${c.w}</button>`).join('');
+ $('mem').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(memLock||b.classList.contains('open')||b.classList.contains('done'))return;
+  b.classList.add('open');speak(b.dataset.w);memOpen.push(b);
+  if(memOpen.length===2){const [a,c]=memOpen;memLock=true;
+   if(a.dataset.i===c.dataset.i){setTimeout(()=>{a.classList.add('done');c.classList.add('done');memOpen=[];memLock=false;memDone++;addStar(1);$('memR').textContent=memDone+' / 6';if(memDone===6)toast('🧠 Great memory!')},400)}
+   else setTimeout(()=>{a.classList.remove('open');c.classList.remove('open');memOpen=[];memLock=false},900)}})}
+initMem();
+
+// ---------- game: speed quiz ----------
+const SQ=[...W.filter(w=>w.d).map(w=>({q:w.d.replace(': Mark is Mary\'s …',''),a:w.w})),
+ {q:"Sam is Kate's dad. Kate is Sam's …",a:'daughter'},{q:"Mark is Mary's husband. Mary is Mark's …",a:'wife'},
+ {q:"Your father's father",a:'grandfather'},{q:"Your aunt's daughter",a:'cousin'},{q:"Your husband's father",a:'father-in-law'}];
+let sqT=null,sqLeft=60,sqScore=0;
+function nextSQ(){const it=SQ[Math.floor(Math.random()*SQ.length)];$('sqQ').textContent=it.q+' = ?';
+ const wrong=shuffle(W.map(w=>w.w).filter(w=>w!==it.a)).slice(0,2);
+ $('sqO').innerHTML=shuffle([it.a,...wrong]).map(o=>`<button class="chip">${o}</button>`).join('');
+ $('sqO').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{if(!sqT)return;if(b.textContent===it.a){sqScore++;$('sqR').textContent='✔ '+sqScore;nextSQ()}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad')}})}
+function startSQ(){clearInterval(sqT);sqLeft=60;sqScore=0;$('sqR').textContent='✔ 0';$('bar').style.width='100%';nextSQ();
+ sqT=setInterval(()=>{sqLeft--;$('bar').style.width=(sqLeft/60*100)+'%';if(sqLeft<=0){clearInterval(sqT);sqT=null;$('sqQ').textContent='⏰ Time! Score: '+sqScore;$('sqO').innerHTML='';addStar(Math.min(sqScore,10))}},1000)}
+
+// ---------- brain zone ----------
+const RD=[
+ {l:'★',q:"My mum's sister is my …",a:['aunt']},
+ {l:'★',q:"My uncle's son is my …",a:['cousin']},
+ {l:'★',q:"My brother's daughter is my …",a:['niece']},
+ {l:'★★',q:"My father's father's wife is my …",a:['grandmother','grandma']},
+ {l:'★★',q:"Dana's mother's husband is Dana's …",a:['father','dad']},
+ {l:'★★',q:"Timur is Erlan's nephew. So Erlan is Timur's …",a:['uncle']},
+ {l:'★★★',q:"Two fathers and two sons catch 3 fish. Each person gets one fish. How many people are there?",a:['3','three']},
+ {l:'★★★',q:"Жеті ата: how many generations of ancestors should every Kazakh know?",a:['7','seven']}
+];
+$('riddles').innerHTML=RD.map((r,i)=>`<div class="rid" id="r${i}"><span class="lvl">${r.l} Riddle ${i+1}</span><p>${r.q}</p><input type="text" placeholder="your answer"><div class="row"><button class="btn" data-i="${i}">Check</button></div></div>`).join('');
+$('riddles').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{const i=b.dataset.i,box=$('r'+i),v=box.querySelector('input').value.trim().toLowerCase();
+ if(box.classList.contains('ok'))return;
+ if(RD[i].a.includes(v)){box.classList.add('ok');b.textContent='✔ Correct!';addStar(2);toast('🧠 Brilliant!')}
+ else{box.classList.remove('bad');void box.offsetWidth;box.style.animation='shake .35s';setTimeout(()=>box.style.animation='',400);toast('Think again 🤔')}});
+
+// ---------- reflection ----------
+function addLeaf(l){const t=$('treeS');const d=document.createElement('span');d.className='dot';d.textContent=l;
+ d.style.left=(30+Math.random()*40)+'%';d.style.bottom=(80+Math.random()*90)+'px';t.appendChild(d);speak(l==='🍀'?'Well done!':l==='🍂'?'Good try!':'Keep practising!')}
+const SC=['','Try again','Very difficult','Difficult','Needs improvement','Basic','Satisfactory','Quite good','Good','Very good','Excellent!'];
+$('scale').innerHTML=Array.from({length:10},(_,i)=>`<button>${i+1}</button>`).join('');
+$('scale').querySelectorAll('button').forEach((b,i)=>b.onclick=()=>{$('scale').querySelectorAll('button').forEach((x,j)=>x.classList.toggle('on',j<=i));$('scaleT').textContent=(i+1)+' — '+SC[i+1]});
+
+// ---------- nav highlight ----------
+const secs=[...document.querySelectorAll('header[id],section[id]')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
